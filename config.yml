@@ -1,0 +1,18 @@
+# copy this file to config.yml and substitute in your settings
+development:
+  socrata_auth_token: EI80eKYPTSRRP2zTKe9rsYkZK
+  socrata_secret_token: SuYu5zCa_3_hJ0SsGn3sOxNEhnKdcgiHxyt2
+  socrata_powered_site: https://data.kingcounty.gov
+  cookie_secret: t0ktXjYtkMee1LKZHDoj
+
+#staging:
+  socrata_auth_token: EI80eKYPTSRRP2zTKe9rsYkZK
+  socrata_secret_token: SuYu5zCa_3_hJ0SsGn3sOxNEhnKdcgiHxyt2
+  socrata_powered_site: https://data.kingcounty.gov
+  cookie_secret: t0ktXjYtkMee1LKZHDoj
+
+production:
+  socrata_auth_token: EI80eKYPTSRRP2zTKe9rsYkZK
+  socrata_secret_token: SuYu5zCa_3_hJ0SsGn3sOxNEhnKdcgiHxyt2
+  socrata_powered_site: https://data.kingcounty.gov
+  cookie_secret: t0ktXjYtkMee1LKZHDoj

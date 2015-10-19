@@ -1,0 +1,442 @@
+<html>
+<head>
+<title>King County calendar input form</title>
+<link rel="stylesheet" media="all" type="text/css" href="https://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css" />
+<link rel="shortcut icon" type="image/x-icon" href="https://www.kingcounty.gov/favicon.ico">
+<link rel="stylesheet" href="https://www.kingcounty.gov/css/kc-theme-Default.css">
+<style type='text/css'>
+#main-content {
+padding: 2em;
+}
+/* css for timepicker */
+.ui-timepicker-div .ui-widget-header {
+	margin-bottom: 8px;
+}
+.ui-timepicker-div dl {
+	text-align: left;
+}
+.ui-timepicker-div dl dt {
+	float: left;
+	clear:left;
+	padding: 0 0 0 5px;
+}
+.ui-timepicker-div dl dd {
+	margin: 0 10px 10px 45%;
+}
+.ui-timepicker-div td {
+	font-size: 90%;
+}
+.ui-tpicker-grid-label {
+	background: none;
+	border: none;
+	margin: 0;
+	padding: 0;
+}
+.ui-timepicker-rtl {
+	direction: rtl;
+}
+.ui-timepicker-rtl dl {
+	text-align: right;
+	padding: 0 5px 0 0;
+}
+.ui-timepicker-rtl dl dt {
+	float: right;
+	clear: right;
+}
+.ui-timepicker-rtl dl dd {
+	margin: 0 45% 10px 10px;
+}
+</style>
+</head>
+<body>
+<div id="main-content">
+  <div class="container">
+    <form method="POST"
+  data-defaultSuccessRedirect="https://data.kingcounty.gov/Operations/King-County-master-calendar-input-form-revised-Jun/64u7-fg3n/form_success"
+action="/form">
+      <div class="col-sm-8">
+        <div class="row addon-row addon-row-attached">
+          <div class="col-sm-12"> <a href="http://www.kingcounty.gov"><img src="/calendar/images/KClogo-horiz-black-lg.gif" alt="King County" border="0"></a>
+            <h1>King County calendar input form</h1>
+            <div class="form-group calendar_date">
+              <label for="form_field_start_time" title="Start time">Start date/time</label>
+              <div class="fieldContainer dateInput">
+                <input class="form-control" type="text" id="startpicker" name="start_time">
+              </div>
+            </div>
+            <div class="form-group calendar_date">
+              <label for="form_field_end_time" title="End time">End date/time</label>
+              <div class="fieldContainer dateInput">
+                <input class="form-control" type="text" id="endpicker" name="end_time">
+              </div>
+            </div>
+            <div class="form-group html">
+              <label for="form_field_event_name" title="Event Name">Event Name</label>
+              <textarea class="form-control" id="form_field_event_name" name="event_name"></textarea>
+            </div>
+            <div class="form-group html">
+              <label for="form_field_event_description" title="Event description/details">Event description/details</label>
+              <textarea class="form-control" id="form_field_event_description" name="event_description"></textarea>
+            </div>
+            <div class="form-group location panel panel-default">
+              <div class="panel-heading">
+                <label for="form_field_location" title="Location">Location</label>
+              </div>
+              <div class="panel-body">
+                <div class="form-group text">
+                  <label for="form_field_location_name" title="Location name">Location name</label>
+                  <input class="form-control" type="text"  id="form_field_location_name" name="location_name" />
+                </div>
+                <div class="fieldContainer locationInput">
+                  <label for="form_field_location_address_street">Street</label>
+                  <input class="form-control" type="text" id="form_field_location_address_street"
+
+    name="location:human_address:address" />
+                  <br />
+                  <label for="form_field_location_address_city">City</label>
+                  <input class="form-control" type="text" id="form_field_location_address_city"
+
+    name="location:human_address:city" />
+                  <br />
+                  <label for="form_field_location_address_state">State</label>
+                  <input class="form-control" type="text" id="form_field_location_address_state"
+
+    name="location:human_address:state" value="WA" />
+                  <br />
+                  <label for="form_field_location_address_zip">Zip</label>
+                  <input class="form-control" type="text" id="form_field_location_address_zip"
+
+    name="location:human_address:zip" />
+                  <br />
+                </div>
+              </div>
+            </div>
+            <div class="form-group url panel panel-default">
+              <div class="panel-heading">
+                <label for="form_field_url" title="URL">URL</label>
+              </div>
+              <div class="panel-body">
+                <div class="fieldContainer urlInput">
+                  <label for="form_field_url_url">Link URL</label>
+                  <input class="form-control" type="text" id="form_field_url_url" name="url:url" />
+                  <br />
+                  <label for="form_field_url_description">Link text</label>
+                  <input class="form-control" type="text" id="form_field_url_description"
+
+    name="url:description" />
+                  <br />
+                </div>
+              </div>
+            </div>
+            <div class="form-group text">
+              <label for="form_field_contact_name" title="Contact name">Contact name</label>
+              <input class="form-control" type="text"  id="form_field_contact_name" name="contact_name" />
+            </div>
+            <div class="form-group email">
+              <label for="form_field_contact_email" title="Contact email">Contact email</label>
+              <input class="form-control" type="text"  id="form_field_contact_email" name="contact_email" />
+            </div>
+          </div>
+        </div>
+        <div class="row addon-row addon-row-attached">
+          <div class="col-sm-12">
+            <div class="form-group panel panel-default">
+              <div class="panel-body">
+                <label for="form_field_contact_phone" title="Contact phone">Contact phone</label>
+                <div class="form-group phone">
+                  <div class="col-sm-8">
+                    <input class="form-control" type="text" id="form_field_contact_phone" name="contact_phone:phone_number" />
+                  </div>
+                  <div class="col-sm-3">
+                    <select class="form-control" id="form_field_contact_phone_phone_type" name="contact_phone:phone_type">
+                      <option value="">(Blank)</option>
+                      <option value="Home">Home</option>
+                      <option value="Cell">Cell</option>
+                      <option value="Work">Work</option>
+                      <option value="Fax">Fax</option>
+                      <option value="Other">Other</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row addon-row addon-row-attached">
+          <div class="col-sm-12">
+            <div class="form-group text">
+              <label for="form_field_host_contact_department" title="Host/Contact Department">Host/Contact Department</label>
+              <input class="form-control" type="text" id="form_field_host_contact_department" name="host_contact_department" />
+            </div>
+            <div class="form-group text">
+              <label for="form_field_feed_keyword_s" title="Feed Keyword(s):">Feed Keyword(s):</label>
+              <input class="form-control" type="text"  id="form_field_feed_keyword_s" name="feed_keyword_s" />
+            </div>
+            <div class="checkbox form-group">
+              <label for="form_field_home_page_y_n" title="Home page Y/N">
+                <input type="checkbox" id="form_field_home_page_y_n" name="home_page_y_n" />
+                Display on KC home page </label>
+            </div>
+          </div>
+        </div>
+        <div id="main_categories">
+          <div class="row addon-row addon-row-attached">
+            <div class="col-sm-12">
+              <div class="form-group panel panel-default">
+                <div class="panel-body">
+                  <div class="col-sm-12">
+	                  <label>Categories</label>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="checkbox">
+                      <label for="form_field_arts_culture" title="arts_culture">
+                        <input type="checkbox" id="form_field_arts_culture" name="arts_culture" />
+                        arts_culture </label>
+                    </div>
+                    <div class="checkbox">
+                      <label for="form_field_business" title="business">
+                        <input type="checkbox" id="form_field_business" name="business" />
+                        business </label>
+                    </div>
+                    <div class="checkbox">
+                      <label for="form_field_closure" title="closure">
+                        <input type="checkbox" id="form_field_closure" name="closure" />
+                        closure </label>
+                    </div>
+                    <div class="checkbox">
+                      <label for="form_field_council" title="council">
+                        <input type="checkbox" id="form_field_council" name="council" />
+                        council </label>
+                    </div>
+                    <div class="checkbox">
+                      <label for="form_field_courts" title="courts">
+                        <input type="checkbox" id="form_field_courts" name="courts" />
+                        courts </label>
+                    </div>
+                    <div class="checkbox">
+                      <label for="form_field_elections" title="elections">
+                        <input type="checkbox" id="form_field_elections" name="elections" />
+                        elections </label>
+                    </div>
+                    <div class="checkbox">
+                      <label for="form_field_emergency" title="emergency">
+                        <input type="checkbox" id="form_field_emergency" name="emergency" />
+                        emergency </label>
+                    </div>
+                    <div class="checkbox">
+                      <label for="form_field_employees" title="employees">
+                        <input type="checkbox" id="form_field_employees" name="employees" />
+                        employees </label>
+                    </div>
+                    <div class="checkbox">
+                      <label for="form_field_environment" title="environment">
+                        <input type="checkbox" id="form_field_environment" name="environment" />
+                        environment </label>
+                    </div>
+                    <div class="checkbox">
+                      <label for="form_field_events" title="events">
+                        <input type="checkbox" id="form_field_events" name="events" />
+                        events </label>
+                    </div>
+                    <div class="checkbox">
+                      <label for="form_field_executive" title="executive">
+                        <input type="checkbox" id="form_field_executive" name="executive" />
+                        executive </label>
+                    </div>
+                    <div class="checkbox">
+                      <label for="form_field_health" title="health">
+                        <input type="checkbox" id="form_field_health" name="health" />
+                        health </label>
+                    </div>
+                    <div class="checkbox">
+                      <label for="form_field_jails" title="jails">
+                        <input type="checkbox" id="form_field_jails" name="jails" />
+                        jails </label>
+                    </div>
+                    <div class="checkbox">
+                      <label for="form_field_jobs" title="jobs">
+                        <input type="checkbox" id="form_field_jobs" name="jobs" />
+                        jobs </label>
+                    </div>
+                    <div class="checkbox">
+                      <label for="form_field_licenses" title="licenses">
+                        <input type="checkbox" id="form_field_licenses" name="licenses" />
+                        licenses </label>
+                    </div>
+                    <div class="checkbox">
+                      <label for="form_field_metro" title="Metro">
+                        <input type="checkbox" id="form_field_metro" name="metro" />
+                        Metro </label>
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="checkbox">
+                      <label for="form_field_news" title="news">
+                        <input type="checkbox" id="form_field_news" name="news" />
+                        news </label>
+                    </div>
+                    <div class="checkbox">
+                      <label for="form_field_operations" title="operations">
+                        <input type="checkbox" id="form_field_operations" name="operations" />
+                        operations </label>
+                    </div>
+                    <div class="checkbox">
+                      <label for="form_field_parks" title="parks">
+                        <input type="checkbox" id="form_field_parks" name="parks" />
+                        parks </label>
+                    </div>
+                    <div class="checkbox">
+                      <label for="form_field_permits" title="permits">
+                        <input type="checkbox" id="form_field_permits" name="permits" />
+                        permits </label>
+                    </div>
+                    <div class="checkbox">
+                      <label for="form_field_pets" title="pets">
+                        <input type="checkbox" id="form_field_pets" name="pets" />
+                        pets </label>
+                    </div>
+                    <div class="checkbox">
+                      <label for="form_field_property" title="property">
+                        <input type="checkbox" id="form_field_property" name="property" />
+                        property </label>
+                    </div>
+                    <div class="checkbox">
+                      <label for="form_field_recreation" title="recreation">
+                        <input type="checkbox" id="form_field_recreation" name="recreation" />
+                        recreation </label>
+                    </div>
+                    <div class="checkbox">
+                      <label for="form_field_recycling_trash" title="recycling_trash">
+                        <input type="checkbox" id="form_field_recycling_trash" name="recycling_trash" />
+                        recycling_trash </label>
+                    </div>
+                    <div class="checkbox">
+                      <label for="form_field_roads" title="roads">
+                        <input type="checkbox" id="form_field_roads" name="roads" />
+                        roads </label>
+                    </div>
+                    <div class="checkbox">
+                      <label for="form_field_rural" title="rural">
+                        <input type="checkbox" id="form_field_rural" name="rural" />
+                        rural </label>
+                    </div>
+                    <div class="checkbox">
+                      <label for="form_field_safety" title="safety">
+                        <input type="checkbox" id="form_field_safety" name="safety" />
+                        safety </label>
+                    </div>
+                    <div class="checkbox">
+                      <label for="form_field_sheriff" title="sheriff">
+                        <input type="checkbox" id="form_field_sheriff" name="sheriff" />
+                        sheriff </label>
+                    </div>
+                    <div class="checkbox">
+                      <label for="form_field_socialservices" title="SocialServices">
+                        <input type="checkbox" id="form_field_socialservices" name="socialservices" />
+                        SocialServices </label>
+                    </div>
+                    <div class="checkbox">
+                      <label for="form_field_transportation" title="transportation">
+                        <input type="checkbox" id="form_field_transportation" name="transportation" />
+                        transportation </label>
+                    </div>
+                    <div class="checkbox">
+                      <label for="form_field_volunteer" title="volunteer">
+                        <input type="checkbox" id="form_field_volunteer" name="volunteer" />
+                        volunteer </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row addon-row addon-row-attached">
+            <div class="col-sm-12">
+                <button type="submit" class="btn btn-default" style="margin-bottom:.8em">Submit</button>
+                <p> <a href="http://www.socrata.com/" class="poweredLink" target="_blank">Powered by Socrata</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.1.min.js"></script> 
+<script type="text/javascript" src="https://code.jquery.com/ui/1.10.4/jquery-ui.min.js"></script> 
+<script type="text/javascript" src="jquery-ui-timepicker-addon.js"></script> 
+<script type="text/javascript" src="jquery-ui-sliderAccess.js"></script> 
+<script type="text/javascript" src="https://sellfy.com/js/api_buttons.js"></script> 
+<script type="text/javascript">
+		
+
+		// in case anyone tries to bookmark the form
+		if (document.referrer.indexOf('https://kc-main-calendar.herokuapp.com')!==0){
+			window.location.replace('/');
+		}
+		
+		
+		$(function() {
+    $( "#startpicker" ).datetimepicker({
+      timeFormat: 'hh:mm tt',
+    });
+     $( "#endpicker" ).datetimepicker({
+      timeFormat: 'hh:mm tt',
+    });
+    
+      $( "#tacpicker" ).datetimepicker({
+      timeFormat: 'hh:mm tt',
+    });
+
+  });
+		// http://trentrichardson.com/examples/timepicker
+		
+$(function() {
+    $("#startpicker").datetimepicker();
+
+    $("#endpicker").datetimepicker();
+    
+    $("#tacpicker").datetimepicker();
+    
+  });
+/*
+var startDateTextBox = $('#rest_example_4_start');
+var endDateTextBox = $('#rest_example_4_end');
+
+startDateTextBox.datetimepicker({ 
+	timeFormat: 'hh:mm tt',
+	onClose: function(dateText, inst) {
+		if (endDateTextBox.val() != '') {
+			var testStartDate = startDateTextBox.datetimepicker('getDate');
+			var testEndDate = endDateTextBox.datetimepicker('getDate');
+			if (testStartDate > testEndDate)
+				endDateTextBox.datetimepicker('setDate', testStartDate);
+		}
+		else {
+			endDateTextBox.val(dateText);
+		}
+	},
+	onSelect: function (selectedDateTime){
+		endDateTextBox.datetimepicker('option', 'minDate', startDateTextBox.datetimepicker('getDate') );
+	}
+});
+endDateTextBox.datetimepicker({ 
+	timeFormat: 'hh:mm tt',
+	onClose: function(dateText, inst) {
+		if (startDateTextBox.val() != '') {
+			var testStartDate = startDateTextBox.datetimepicker('getDate');
+			var testEndDate = endDateTextBox.datetimepicker('getDate');
+			if (testStartDate > testEndDate)
+				startDateTextBox.datetimepicker('setDate', testEndDate);
+		}
+		else {
+			startDateTextBox.val(dateText);
+		}
+	},
+	onSelect: function (selectedDateTime){
+		startDateTextBox.datetimepicker('option', 'maxDate', endDateTextBox.datetimepicker('getDate') );
+	}
+});*/
+
+</script>
+</body>
+</html>
