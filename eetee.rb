@@ -12,21 +12,23 @@ require './socrata_request_serializer_middleware'
 
 class Eetee < Sinatra::Base
 
-
 # APPLICATION ENDPOINTS
   # display the form if they are logged in.
   get '/' do
     with_access_token do |access_token|
-      
-      	redirect '/calendar/input-form.html'
-      
-      # @user = JSON.parse access_token.get '/api/users/current.json'
+      # request current user to ensure our auth is still current.
+      access_token.get '/api/users/current.json'
+
+      # now return our result if we're okay.
+      send_file 'views/input-form.html'
     end
 
     haml :index
   end
-  
 
+  get '/thanks' do
+    haml :thanks
+  end
 
   # page that uses an obtained access_token to update the calendar.
   post '/form' do
@@ -76,7 +78,7 @@ class Eetee < Sinatra::Base
     
     #end unless params  
     end
-    redirect '/calendar/thanks.html'
+    redirect '/thanks'
   
   #end form
   end
@@ -133,7 +135,7 @@ class Eetee < Sinatra::Base
     end
 
     session[:access_token] = access_token.token
-    redirect '/calendar/input-form.html'
+    redirect '/'
   end
 
 private
@@ -163,14 +165,26 @@ private
     return if session[:access_token].nil?
 
     # catch 401's; they usually mean the token has expired
+    # catch 403's with a body of "Bad OAuth token"; same deal
     # leave the rest to be handled by the caller
     begin
       yield OAuth2::AccessToken.new client, session[:access_token]
     rescue OAuth2::AccessDenied => ex
-      session[:access_token] = nil
-      @error = "It looks like your login has expired. You will need to log back in."
-      return haml :error
+      halt clear_auth!
+    rescue OAuth2::HTTPError => ex
+      if (JSON.parse ex.response.body)['message'] == "Bad OAuth token"
+        halt clear_auth!
+      else
+        throw ex
+      end
     end
+  end
+
+  # clears auth and shows an error if we think the oauth token is dead.
+  def clear_auth!
+    session[:access_token] = nil
+    @error = "It looks like your login has expired. You will need to log back in."
+    return haml :error
   end
 
   # simple helper to ensure that our redirect_uri is well-formed. take our current url,

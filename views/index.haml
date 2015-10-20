@@ -10,27 +10,12 @@
       %img{:src => "/calendar/images/KClogo-horiz-black-lg.gif"}
       %h1 King County main calendar
 
-      - if @user
-        %p You are logged in as:
-        %dl
-          %dt id
-          %dd= @user['id']
-          %dt username
-          %dd= @user['screenName']
-          %dt email
-          %dd= @user['email']
+      %p
+        You are not logged in.
+        %a{ :href => '/auth' } Log in now
+        to add a calendar entry.
+      %p
+        We have received reports that some Web browsers are not working well with 
+        this tool. We are looking into this. Meanwhile, at the moment Internet 
+        Explorer and Safari seem to work the best.
 
-        %form{ :action => '/update', :method => 'POST' }
-          %input{ :type => 'hidden', :name => 'user_id', :value => @user['id'] }
-          %input{ :type => 'text', :name => 'user_description', :value => @user['description'] }
-          %input{ :type => 'submit' }
-
-      - else
-        %p
-          You are not logged in.
-          %a{ :href => '/auth' } Log in now
-          to add a calendar entry.
-        %p
-          We have received reports that some Web browsers are not working well with 
-          this tool. We are looking into this. Meanwhile, at the moment Internet 
-          Explorer and Safari seem to work the best.
